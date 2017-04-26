@@ -6,14 +6,26 @@
 
 tested with Ubuntu Xenial, should work with any linux distribution with minor changes
 
-## instances setup
+## image creation
 
-* create 2 Ubuntu Xenial AWS instances 
-* the security group should allow for UDP and TCP communication between the instances
-* upload ``configure.sh``, ``rxe.service`` and ``rdma_user_rxe.h`` to ~ubuntu
-* run ``./configure.sh``
-* reboot
-* run ``rxe_cfg add eth0``
+### if using IAM roles and/or MFA
+```sh
+aws sts assume-role --role-arn arn:aws:iam::ACCOUNT-ID:role/ROLE_NAME \
+                    --role-session-name "Packer" \
+                    --token-code 2FATOKEN \
+                    --serial-number arn:aws:iam::ACCOUNT_ID:mfa/USER_NAME > /tmp/session.json
+
+export AWS_ACCESS_KEY_ID=$(cat /tmp/session.json | jq .Credentials.AccessKeyId)
+export AWS_SECRET_ACCESS_KEY=$(cat /tmp/session.json | jq .Credentials.SecretAccessKey
+export AWS_SESSION_TOKEN=$(cat /tmp/session.json | jq .Credentials.SessionToken)
+```
+
+```sh
+packer build template.json
+```
+
+## instances setup
+* create 2 AWS instances using previously built image
 
 ## test
 
@@ -29,4 +41,5 @@ tested with Ubuntu Xenial, should work with any linux distribution with minor ch
 ## IMPROVEMENTS
 
 * buggy rxe service installation
+
 
