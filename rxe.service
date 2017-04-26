@@ -1,0 +1,12 @@
+[Unit]
+Description=RDMA over Converged Ethernet
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rxe_cfg start
+ExecStop=/usr/bin/rxe_cfg stop
+
+[Install]
+WantedBy=multi-user.target
+

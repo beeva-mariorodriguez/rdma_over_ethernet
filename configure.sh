@@ -14,6 +14,10 @@ cd librxe-dev
 ./configure  --sysconfdir=/etc --prefix=/usr
 make
 sudo make install
+# 
+sudo cp ../rxe.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable rxe
 
 echo "*** reboot ***"
 

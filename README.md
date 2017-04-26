@@ -10,11 +10,10 @@ tested with Ubuntu Xenial, should work with any linux distribution with minor ch
 
 * create 2 Ubuntu Xenial AWS instances 
 * the security group should allow for UDP and TCP communication between the instances
-* upload ``configure.sh`` and ``rdma_user_rxe.h`` to ~ubuntu
+* upload ``configure.sh``, ``rxe.service`` and ``rdma_user_rxe.h`` to ~ubuntu
 * run ``./configure.sh``
 * reboot
 * run ``rxe_cfg add eth0``
-* run ``rxe_cfg start``
 
 ## test
 
@@ -29,5 +28,5 @@ tested with Ubuntu Xenial, should work with any linux distribution with minor ch
 
 ## IMPROVEMENTS
 
-* load rxe at boot
+* buggy rxe service installation
 
