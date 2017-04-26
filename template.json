@@ -1,0 +1,32 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_access_key": "",
+    "aws_session_token":""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_access_key`}}",
+    "token": "{{user `aws_session_token`}}",
+    "region": "us-west-2",
+    "source_ami": "ami-efd0428f",
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "roce-{{timestamp}}"
+  }],
+  "provisioners": [{
+      "type":"file",
+      "source":"rdma_user_rxe.h",
+      "destination":"/home/ubuntu/rdma_user_rxe.h"
+  },{
+      "type":"file",
+      "source":"rxe.service",
+      "destination":"/home/ubuntu/rxe.service"
+  },
+  {
+      "type":"shell",
+      "script":"configure.sh"
+  }]
+}
+
