@@ -3,10 +3,12 @@
 ## requirements
 
 * ubuntu xenial 
+* packer (https://www.packer.io/)
+* aws cli
 
 tested with Ubuntu Xenial, should work with any linux distribution with minor changes
 
-## image creation
+# image creation (with packer)
 
 ### if using IAM roles and/or MFA
 ```sh
