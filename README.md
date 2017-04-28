@@ -32,9 +32,10 @@ packer build template.json
 ## test
 
 * all tests: 
- * run server command on one instance and run the client on the other using the server IP as parameter
- * all tested on amazon AWS
- * install: rdmacm-utils and ibutils
+    * run server command on one instance and run the client on the other using the server IP as parameter
+    * all tested on amazon AWS
+    * install: rdmacm-utils and ibutils
+    
 * ``rdma_server`` and ``rdma_client``: connection OK
 * ``udaddy``: fails with segmentation fault, possible bug?
 * ``ib_read_lat``: high latency variation (average: 250usec, max: 3600usec)
